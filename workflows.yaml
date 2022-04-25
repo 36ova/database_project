@@ -1,2 +1,6 @@
-comment: '...'
-main_tasks: []
+comment: 'Running main workflow with initial steps'
+main_tasks:
+  - comment: 'Queries from file "ddl.sql".'
+    subtasks:
+      - type: 'simple_sql'
+      file_location: './project/sql/ddl.sql'
