@@ -3,4 +3,4 @@ main_tasks:
   - comment: 'Queries from file "ddl.sql".'
     subtasks:
       - type: 'complex_sql'
-      file_location: './project/sql/ddl.sql'
+        file_location: './project/sql/ddl.sql'
