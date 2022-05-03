@@ -64,11 +64,11 @@ CREATE TABLE pro_league_database.match (
 INSERT INTO pro_league_database.player(nickname, country, p_role, age, p_name)
   VALUES ('Whiteknight', 'Finland', 'Top', 26, 'Matti Sormunen'),
          ('Zanzarah', 'Russia', 'Jungle', 25, 'Nikolay Akatov'),
-         ('nukeduck', 'Norway', 'Mid', 25, 'Erlend Våtevik Holm'),
+         ('Nukeduck', 'Norway', 'Mid', 25, 'Erlend Våtevik Holm'),
          ('Jeskla', 'Sweden', 'Bot', 21, 'Jesper Klarin Strömberg'),
          ('promisq', 'Sweden', 'Support', 28, 'Hampus Mikael Abrahamsson'),
          ('Dajor', 'Germany', 'Mid', 19, 'Oliver Ryppa'),
-         ('Kobbe', 'Denmark', 'Bot', 25, 'asper Kobberup'),
+         ('Kobbe', 'Denmark', 'Bot', 25, 'Kasper Kobberup'),
          ('Finn', 'Sweden', 'Top', 22, 'Finn Wiestål'),
          ('Markoon', 'Netherlands', 'Jungle', 19, 'Mark van Woensel'),
          ('Patrik', 'Czech Republic', 'Mid', 22, 'Patrik Jírů'),
@@ -86,7 +86,7 @@ INSERT INTO pro_league_database.player(nickname, country, p_role, age, p_name)
          ('Armut', 'Turkey', 'Top', 23, 'İrfan Berk Tükek'),
          ('Elyoya', 'Spain', 'Jungle', 22, 'Javier Prades Batalla'),
          ('Reeker', 'Germany', 'Mid', 20, 'Steven Chen'),
-         ('UNF0RGIVEN', 'Sweeden', 'Bot', 21, '	William Nieminen'),
+         ('UNF0RGIVEN', 'Sweeden', 'Bot', 21, 'William Nieminen'),
          ('Kaiser', 'Germany', 'Support', 23, 'Norman Kaiser'),
          ('HiRit', 'South Korea', 'Top', 23, 'Shin Tae-min'),
          ('Shaltan', 'Poland', 'Jungle', 20, 'Lucjan Ahmad'),
@@ -112,7 +112,12 @@ INSERT INTO pro_league_database.player(nickname, country, p_role, age, p_name)
          ('Selfmade', 'Poland', 'Jungle', 22, 'Oskar Boderek'),
          ('Perkz', 'Croatia', 'Mid', 23, 'Luka Perković'),
          ('Carzzy', 'Czech Republic', 'Bot', 20, 'Matyáš Orság'),
-         ('Labrov', 'Greece', 'Support', 20, 'Labros Papoutsakis');
+         ('Labrov', 'Greece', 'Support', 20, 'Labros Papoutsakis'),
+         ('Scarface', 'Germany', 'Top', 22, 'Daniel Aitbelkacem'),
+         ('Isma', 'France', 'Jungle', 20, 'Ismaïl Boualem'),
+         ('Decay', 'France', 'Mid', 22, 'Nicolas Gawron'),
+         ('TakeSet', 'Denmark', 'Bot', 19, 'Belan Ahour'),
+         ('HungryPanda', 'Greece', 'Support', 23, 'Nikos Nikolaidis');
 
 SELECT *
 FROM pro_league_database.player;
@@ -186,7 +191,7 @@ INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Excel'), '2023-11-20'),
         ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Markoon'),
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Excel'), '2022-11-21'),
-        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'nukeduck'),
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Nukeduck'),
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Excel'), '2022-11-21'),
         ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Patrik'),
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Excel'), '2023-11-20'),
@@ -236,7 +241,18 @@ INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
         ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Neon'),
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Misfits Gaming'), '2023-11-20'),
         ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Mersa'),
-            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Misfits Gaming'), '2024-11-18');
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Misfits Gaming'), '2024-11-18'),
+
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Scarface'),
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Schalke 04'), '2022-11-21'),
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Isma'),
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Schalke 04'), '2022-11-21'),
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Decay'),
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Schalke 04'), '2022-11-21'),
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'TakeSet'),
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Schalke 04'), '2022-11-21'),
+        ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'HungryPanda'),
+            (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Schalke 04'), '2022-11-21');
 
 INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
     VALUES ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Odoamne'),
@@ -285,14 +301,14 @@ INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
 
 SELECT *
 FROM pro_league_database.player_x_team;
-
--- Удаление значений из таблицы
-TRUNCATE pro_league_database.team, pro_league_database.player,
-    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
-
--- Удаление таблиц
-DROP TABLE pro_league_database.team, pro_league_database.player,
-    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
-
--- Удаление схемы
-DROP SCHEMA pro_league_database
+--
+-- -- Удаление значений из таблицы
+-- TRUNCATE pro_league_database.team, pro_league_database.player,
+--     pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
+--
+-- -- Удаление таблиц
+-- DROP TABLE pro_league_database.team, pro_league_database.player,
+--     pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
+--
+-- -- Удаление схемы
+-- DROP SCHEMA pro_league_database
