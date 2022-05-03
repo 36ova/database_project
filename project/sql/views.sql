@@ -52,7 +52,7 @@ FROM pro_league_database.country_info;
 
 
 -- (5) Представление игроков с точки зрения контрактов:
--- никнейм, роль, винрейт, команда, регион, дата истечения контракта
+-- никнейм, роль, винрейт, команда, регион, дата истечения контракта;
 -- сортировка сначала по дате истечения контракта, потом по винрейту.
 CREATE VIEW pro_league_database.contracts AS
 WITH team_extended AS (
@@ -73,9 +73,9 @@ SELECT *
 FROM pro_league_database.contracts;
 
 
--- (6) Представление игроков с точки зрения ролей в правильно порядке (от Top к Support)
--- никнейм, роль, винрейт, команда, регион, дата истечения контракта
--- сортировка сначала по дате истечения контракта, потом по винрейту.
+-- (6) Представление игроков с точки зрения ролей в правильном порядке (от Top к Support)
+-- никнейм, роль, винрейт, команда, регион, дата истечения контракта;
+-- сортировка сначала по роли, потом по винрейту.
 CREATE VIEW pro_league_database.roles AS
 WITH team_extended AS (
         SELECT team_id, t_name, region, n_wins, n_losses, CAST(n_wins AS float) / CAST((n_wins + n_losses) AS float) AS winrate
@@ -97,3 +97,6 @@ FROM (
 
 SELECT *
 FROM pro_league_database.roles;
+
+DROP VIEW pro_league_database.contracts, pro_league_database.player_info, pro_league_database.player_personal_info,
+    pro_league_database.team_info, pro_league_database.country_info, pro_league_database.roles;
