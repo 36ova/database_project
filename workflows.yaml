@@ -5,6 +5,6 @@ main_tasks:
       - type: 'complex_sql'
         file_location: './project/sql/ddl.sql'
       - type: 'complex_sql'
-          file_location: './project/sql/select.sql'
+        file_location: './project/sql/select.sql'
 #      - type: 'complex_sql'
 #          file_location: './project/sql/views.sql'
