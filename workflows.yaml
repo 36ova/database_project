@@ -1,10 +1,10 @@
 comment: 'Running main workflow with initial steps'
 main_tasks:
-  - comment: 'Queries from file "ddl.sql".'
+  - comment: 'All SQL queries'
     subtasks:
       - type: 'complex_sql'
         file_location: './project/sql/ddl.sql'
-      - type: 'complex_sql'
-        file_location: './project/sql/select.sql'
-      - type: 'complex_sql'
-          file_location: './project/sql/views.sql'
+#      - type: 'complex_sql'
+#        file_location: './project/sql/select.sql'
+#      - type: 'complex_sql'
+#          file_location: './project/sql/views.sql'

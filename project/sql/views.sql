@@ -24,7 +24,7 @@ FROM pro_league_database.player_personal_info;
 CREATE VIEW pro_league_database.team_info AS
 SELECT t_name, region, COUNT(player_id) players, CAST(n_wins AS float) / CAST((n_wins + n_losses) AS float) winrate
 FROM pro_league_database.player
-        RIHGT JOIN pro_league_database.player_x_team USING (player_id)
+        RIGHT JOIN pro_league_database.player_x_team USING (player_id)
         RIGHT JOIN pro_league_database.team USING (team_id)
 GROUP BY t_name, region, n_wins, n_losses
 ORDER BY winrate DESC;
@@ -97,6 +97,3 @@ FROM (
 
 SELECT *
 FROM pro_league_database.roles;
-
-DROP VIEW pro_league_database.contracts, pro_league_database.player_info, pro_league_database.player_personal_info,
-    pro_league_database.team_info, pro_league_database.country_info, pro_league_database.roles;
