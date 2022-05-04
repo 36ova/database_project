@@ -88,12 +88,12 @@ FROM (
                         WHEN p_role LIKE 'Jungle' THEN 1
                         WHEN p_role LIKE 'Mid' THEN 2
                         WHEN p_role LIKE 'Bot' THEN 3
-                        WHEN p_role LIKE 'Support' THEN 4 END, t_name, contract_exp, region, winrate,
+                        WHEN p_role LIKE 'Support' THEN 4 END role, t_name, contract_exp, region, winrate,
            (CASE WHEN contract_exp IS NULL THEN CURRENT_DATE ELSE contract_exp END) exp_date
     FROM pro_league_database.player
         LEFT JOIN pro_league_database.player_x_team USING (player_id)
         LEFT JOIN team_extended USING (team_id)
-    ORDER BY p_role DESC, winrate DESC) subquery;
+    ORDER BY role, winrate DESC) subquery;
 
 SELECT *
 FROM pro_league_database.roles;
