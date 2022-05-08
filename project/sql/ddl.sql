@@ -304,14 +304,3 @@ INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
 
 SELECT *
 FROM pro_league_database.player_x_team;
-
--- Удаление значений из таблицы
-TRUNCATE pro_league_database.team, pro_league_database.player,
-    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
-
--- Удаление таблиц
-DROP TABLE pro_league_database.team, pro_league_database.player,
-    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
-
--- Удаление схемы
-DROP SCHEMA pro_league_database
