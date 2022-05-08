@@ -175,6 +175,9 @@ SET winner_team = team_id_blue WHERE winner_team = 1;
 UPDATE pro_league_database.match
 SET winner_team = team_id_red WHERE winner_team = 2;
 
+ALTER TABLE pro_league_database.match
+ADD CHECK (match.winner_team = match.team_id_red OR match.winner_team = match.team_id_blue);
+
 SELECT *
 FROM pro_league_database.match;
 
@@ -301,14 +304,14 @@ INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
 
 SELECT *
 FROM pro_league_database.player_x_team;
---
--- -- Удаление значений из таблицы
--- TRUNCATE pro_league_database.team, pro_league_database.player,
---     pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
---
--- -- Удаление таблиц
--- DROP TABLE pro_league_database.team, pro_league_database.player,
---     pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
---
--- -- Удаление схемы
--- DROP SCHEMA pro_league_database
+
+-- Удаление значений из таблицы
+TRUNCATE pro_league_database.team, pro_league_database.player,
+    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
+
+-- Удаление таблиц
+DROP TABLE pro_league_database.team, pro_league_database.player,
+    pro_league_database.match, pro_league_database.player_x_team, pro_league_database.split;
+
+-- Удаление схемы
+DROP SCHEMA pro_league_database

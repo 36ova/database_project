@@ -97,3 +97,7 @@ FROM (
 
 SELECT *
 FROM pro_league_database.roles;
+
+DROP VIEW pro_league_database.player_info, pro_league_database.player_personal_info,
+    pro_league_database.team_info, pro_league_database.country_info, pro_league_database.contracts,
+    pro_league_database.roles;
