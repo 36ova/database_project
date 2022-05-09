@@ -65,7 +65,8 @@ AFTER INSERT OR UPDATE OR DELETE ON pro_league_database.match
 FOR EACH ROW
 EXECUTE PROCEDURE pro_league_database.trigger_upd();
 
--- Проверка
+-- Проверка: добавим 2 записи о новых матчах.
+-- Результаты отобразились в таблице о командах.
 SELECT pro_league_database.add_match('LEC 2022 Spring', 'Rogue', 'Misfits Gaming', 1);
 SELECT pro_league_database.add_match('LEC 2022 Spring', 'Team BDS', 'Excel', 1);
 
@@ -102,6 +103,8 @@ AFTER INSERT ON pro_league_database.player_x_team
 FOR EACH ROW
 EXECUTE PROCEDURE pro_league_database.add_contract();
 
+-- Проверка: пусть одного из Free Agent-ов взяли в команду Astralis.
+-- В логах появилась соответсвующая запись.
 INSERT INTO pro_league_database.player_x_team(player_id, team_id, contract_exp)
     VALUES ((SELECT player_id FROM pro_league_database.player WHERE nickname = 'Whiteknight'),
             (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Astralis'), '2025-11-14');
