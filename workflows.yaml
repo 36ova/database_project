@@ -8,3 +8,5 @@ main_tasks:
         file_location: './project/sql/select.sql'
       - type: 'complex_sql'
         file_location: './project/sql/views.sql'
+      - type: 'complex_sql'
+        file_location: './project/sql/func_trigger.sql'

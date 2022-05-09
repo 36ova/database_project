@@ -119,6 +119,12 @@ INSERT INTO pro_league_database.player(nickname, country, p_role, age, p_name)
          ('TakeSet', 'Denmark', 'Bot', 19, 'Belan Ahour'),
          ('HungryPanda', 'Greece', 'Support', 23, 'Nikos Nikolaidis');
 
+-- Уникальный некластеризованный индекс в таблице player по nickname создан
+-- для оптимизации поисков (WHERE nickname = '...'), которые в дальнейшем
+-- используютя в инсертах.
+CREATE UNIQUE INDEX idx_nickname
+ON pro_league_database.player(nickname);
+
 SELECT *
 FROM pro_league_database.player;
 
@@ -136,6 +142,12 @@ INSERT INTO pro_league_database.team(t_name, region, n_wins, n_losses)
          ('Team Vitality', 'EU', 9, 9),
          ('Schalke 04', 'EU', 3, 15);
 
+-- Уникальный некластеризованный индекс в таблице team по t_name создан
+-- для оптимизации поисков (WHERE t_name = '...'), которые в дальнейшем
+-- используютя в инсертах.
+CREATE UNIQUE INDEX idx_t_name
+ON pro_league_database.team(t_name);
+
 SELECT *
 FROM pro_league_database.team;
 
@@ -145,13 +157,19 @@ INSERT INTO pro_league_database.split(split_name, region)
          ('LEC 2021 Summer', 'EU'),
          ('LEC 2021 Spring', 'EU');
 
+-- Уникальный некластеризованный индекс в таблице split по split_name создан
+-- для оптимизации поисков (WHERE split_name = '...'), которые в дальнейшем
+-- используютя в хранимой функции.
+CREATE UNIQUE INDEX idx_split_name
+ON pro_league_database.split(split_name);
+
 SELECT *
 FROM pro_league_database.split;
 
 -- Заполнение таблицы "match"
 INSERT INTO pro_league_database.match(split_id, team_id_blue, team_id_red, winner_team)
   VALUES (1, (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Team Vitality'),
-          (SELECT team_id AS red FROM pro_league_database.team WHERE t_name = 'MAD Lions'), 2),
+          (SELECT team_id FROM pro_league_database.team WHERE t_name = 'MAD Lions'), 2),
       (1, (SELECT team_id FROM pro_league_database.team WHERE t_name = 'SK Gaming'),
        (SELECT team_id FROM pro_league_database.team WHERE t_name = 'Rogue'), 2),
       (1, (SELECT team_id FROM pro_league_database.team WHERE t_name = 'G2 Esports'),
