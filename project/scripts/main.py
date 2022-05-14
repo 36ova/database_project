@@ -16,7 +16,7 @@ team_names = [name.capitalize() for name in r.get_random_words()[:10]]
 print(team_names)
 
 try:
-    with psycopg2.connect(host=hostname, dbname=database, user=username, password=pwd, port=port_id) as conn:
+    with psycopg2.connect(database='org_mipt_atp_db', user='postgres', password='postgres', host='docker', port=49154) as conn:
         with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
             # Вставим 10 команд в таблицу teams, найдем их индексы
             team_insert_script = 'INSERT INTO pro_league_database.team (t_name, region, n_wins, n_losses) VALUES (%s, %s, %s, %s)'
