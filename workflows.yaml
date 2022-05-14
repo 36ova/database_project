@@ -1,4 +1,9 @@
 comment: 'Running main workflow with initial steps'
+before_all:
+  - comment: 'Install dependencies'
+    subtasks:
+      - type: 'shell'
+        file_location: './project/install.sh'
 main_tasks:
   - comment: 'All SQL queries'
     subtasks:
@@ -10,3 +15,5 @@ main_tasks:
         file_location: './project/sql/views.sql'
       - type: 'complex_sql'
         file_location: './project/sql/func_trigger.sql'
+      - type: 'shell'
+        file_location: './project/scripts/run.sh'
