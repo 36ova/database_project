@@ -15,5 +15,7 @@ main_tasks:
         file_location: './project/sql/views.sql'
       - type: 'complex_sql'
         file_location: './project/sql/func_trigger.sql'
+  - comment: 'Python interaction'
+    subtasks:
       - type: 'shell'
         file_location: './project/scripts/run.sh'
